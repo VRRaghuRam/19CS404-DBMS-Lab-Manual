@@ -47,173 +47,147 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
 --
-How many prescriptions were written in each frequency category (e.g., once daily, twice daily)?
-
-Sample tablePrescriptions Table
+-- Write a SQL statement to change salary of employee to 8000 whose Employee ID is 105, if the existing salary is less than 5000.
 
 ```sql
-select Frequency,count(Frequency) as TotalPrescriptions
-from Prescriptions
-group by Frequency;
+UPDATE Employees
+SET SALARY = 8000
+WHERE EMPLOYEE_ID = 105 AND SALARY < 5000;
 ```
 
-## Output:
+**Output:**
 
-<img width="741" height="514" alt="image" src="https://github.com/user-attachments/assets/98f2a758-b65a-43b1-847a-84ec15c863ed" />
+<img width="1186" height="234" alt="image" src="https://github.com/user-attachments/assets/afb829e0-4db3-47b6-8568-53283e53506d" />
 
 
 **Question 2**
 ---
-How many appointments are scheduled for each patient?
-
-Sample table: Appointments Table
+-- Write a SQL statement to Increase the salary by 500 and email as 'updated' for employees with job ID 'SA_REP' and commission percentage greater than 0.15
 
 ```sql
-select PatientID,count(AppointmentDateTime) as TotalAppointments
-from Appointments
-group by PatientID;
+UPDATE Employees
+SET SALARY = SALARY + 500, EMAIL = 'updated'
+WHERE JOB_ID = 'SA_REP' AND commission_pct > 0.15;
 ```
 
-## Output:
+**Output:**
 
-<img width="679" height="242" alt="image" src="https://github.com/user-attachments/assets/3d78fc3f-d7e5-4ba1-b991-73db757483db" />
+<img width="1189" height="517" alt="image" src="https://github.com/user-attachments/assets/873924b8-918e-4e3c-a7dd-3b709c58340d" />
 
 
 **Question 3**
 ---
-What is the total number of medications prescribed for each patient?
-
-Sample tablePrescriptions Table
+-- Update the reorder level to 40 pieces for all products belonging to the 'Grocery' category in the products table.
 
 ```sql
-select PatientID,count(Medication) as TotalMedications
-from Prescriptions
-group by PatientID;
+UPDATE PRODUCTS
+SET reorder_lvl = 40
+WHERE category = 'Grocery';
 ```
 
-## Output:
+**Output:**
 
-<img width="654" height="360" alt="image" src="https://github.com/user-attachments/assets/ec05c33f-38ce-498e-8d99-ad12876040b9" />
+<img width="1175" height="393" alt="image" src="https://github.com/user-attachments/assets/d91e9204-6656-49e5-815d-259619b1d9fe" />
 
 
 **Question 4**
 ---
-Write a SQL query to determine the number of customers who received at least one grade for their activity.
-
-Sample table: customer
-
+-- Write a SQL statement to Increase the selling price by 15% in the products table where quantity in stock is less than 50 and supplier ID is 10.
 
 ```sql
-select COUNT(grade) as COUNT
-FROM customer;
+UPDATE Products
+SET sell_price = sell_price*1.15
+WHERE quantity < 50 AND supplier_id = 10;
 ```
 
-## Output:
+**Output:**
 
-<img width="343" height="293" alt="image" src="https://github.com/user-attachments/assets/91f26cd9-3e72-45e7-be6c-434c43dfb4d1" />
+<img width="1187" height="481" alt="image" src="https://github.com/user-attachments/assets/d97c91f6-e2be-4487-8bb2-038e8cb55200" />
 
 
 **Question 5**
 ---
-Write a SQL query to find the average length of names for people living in Chennai?
-
-Table: customer
+-- Write a SQL statement to Update the product_name to 'Premium Bread' whose product ID is 5 in the products table.
 
 ```sql
-select avg(length(name)) as avg_name_length
-from customer
-where city='Chennai';
+UPDATE Products
+SET product_name = 'Premium Bread'
+WHERE product_id = 5;
 ```
 
-## Output:
-<img width="416" height="281" alt="image" src="https://github.com/user-attachments/assets/540438dc-24fc-4103-8a2d-e4efcdaefd5f" />
+**Output:**
+
+<img width="1175" height="393" alt="image" src="https://github.com/user-attachments/assets/7002c828-3bba-4d49-a134-a7fe7ecd8fc4" />
 
 
 **Question 6**
 ---
-Write a SQL query to find the average length of email addresses (in characters):
-
-Table: customer
+-- Write a SQL query to Delete customers from 'customer' table where 'CUST_NAME' has exactly 6 characters.
 
 ```sql
-select avg(length(email)) as avg_email_length 
-from customer;
+DELETE FROM Customer
+WHERE LENGTH(CUST_NAME) = 6;
 ```
 
-## Output:
+**Output:**
 
-<img width="430" height="274" alt="image" src="https://github.com/user-attachments/assets/2602ad5b-27d4-4a74-8e00-36cd9339f1b5" />
+<img width="1185" height="732" alt="image" src="https://github.com/user-attachments/assets/247b87b5-6d81-4bfc-bed1-4540019edaf4" />
 
 
 **Question 7**
 ---
-Write a SQL query to find the minimum purchase amount.
-
-Sample table: orders
+-- Write a SQL query to Delete All Doctors with a NULL Specialization
 
 ```sql
-select min(purch_amt) as MINIMUM
-from orders;
+DELETE FROM Doctors
+WHERE specialization IS NULL;
 ```
 
-## Output:
+**Output:**
 
-<img width="337" height="287" alt="image" src="https://github.com/user-attachments/assets/1db28b7a-9b58-4533-8484-ced2de2076c3" />
+<img width="1237" height="900" alt="image" src="https://github.com/user-attachments/assets/ae23178f-87b2-4133-812d-68ab3de38727" />
 
 
 **Question 8**
 ---
-Write the SQL query that accomplishes the grouping of data by age, calculates the average income for each age group, and includes only those age groups where the average income falls between 300,000 and 500,000.
-
-Sample table: employee
+-- Write a SQL query to Delete customers from 'customer' table where 'CUST_NAME' contains the substring 'Holmes'.
 
 ```sql
-select age,AVG(income)
-from employee
-group by age
-having AVG(income) between 300000 and 500000;
+DELETE FROM Customer
+WHERE CUST_NAME LIKE '%Holmes%';
 ```
 
-## Output:
+**Output:**
 
-<img width="570" height="305" alt="image" src="https://github.com/user-attachments/assets/e5e67da3-03b0-446c-b715-984c88cfc72e" />
+<img width="1186" height="526" alt="image" src="https://github.com/user-attachments/assets/bfe5a1f8-7d90-4389-842c-d8f033f3b597" />
 
 
 **Question 9**
 ---
-Write the SQL query that accomplishes the selection of total number of products for each category from the "products" table, and includes only those products where the minimum category ID is less than 3.
-
-Sample table: products
+-- Write a SQL query to Delete All Doctors with a NULL Last Name
 
 ```sql
-select category_id,count(product_name)
-from products
-group by category_id
-having category_id<3;
+DELETE FROM Doctors
+WHERE last_name IS NULL;
 ```
 
-## Output:
+**Output:**
 
-<img width="727" height="328" alt="image" src="https://github.com/user-attachments/assets/6e0ce743-4f64-4cb8-ad3e-f4d4c9e1a915" />
+<img width="1184" height="705" alt="image" src="https://github.com/user-attachments/assets/6f7fbc00-1ee3-456c-8003-c24fe9ce03b1" />
 
 
 **Question 10**
 ---
-Write the SQL query that achieves the grouping of data by city, calculates the total income for each city, and includes only those cities where the total income sum is greater than 200,000.
-
-Sample table: employee
-
-
+-- PWrite a SQL query to Delete all Doctors whose Specialization is either 'Pediatrics' or 'Cardiology' and Last Name is Brown.
 
 ```sql
-select city,SUM(income) as Income
-from employee
-group by city
-having sum(income)>200000;
+DELETE FROM Doctors
+WHERE (specialization = 'Pediatrics' OR specialization = 'Cardiology') AND last_name = 'Brown';
 ```
 
-## Output:
-<img width="535" height="502" alt="image" src="https://github.com/user-attachments/assets/c6d477d9-d255-4d15-bd52-d7616bd343a9" />
+**Output:**
+
+<img width="1159" height="825" alt="image" src="https://github.com/user-attachments/assets/722e4181-5550-4bdc-9ae0-125d636a57ac" />
 
 
 ## RESULT
